@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Caching", "Caching", "{75C003B5-512E-4CBC-ACC4-D587C68AABF9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Messaging", "Messaging", "{CBDC7C03-E96C-46D7-ADED-C6FB14486459}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RealTime", "RealTime", "{0C271B63-D456-4E79-BA2C-DD3FDEDAD03E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RediSearch", "RediSearch", "{FA35E827-2ADC-45F1-9A3F-05CF1FB4296C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreRedisTalks.Caching", "Caching\NetCoreRedisTalks.Caching\NetCoreRedisTalks.Caching.csproj", "{4DFD751C-0E37-4F8D-BEC0-9C7268827FD1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4DFD751C-0E37-4F8D-BEC0-9C7268827FD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DFD751C-0E37-4F8D-BEC0-9C7268827FD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DFD751C-0E37-4F8D-BEC0-9C7268827FD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DFD751C-0E37-4F8D-BEC0-9C7268827FD1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4DFD751C-0E37-4F8D-BEC0-9C7268827FD1} = {75C003B5-512E-4CBC-ACC4-D587C68AABF9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {97AB754E-38A6-4630-8B4D-DE8FB67C75DF}
+	EndGlobalSection
+EndGlobal
