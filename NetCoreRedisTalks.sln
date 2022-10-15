@@ -21,6 +21,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreRedisTalks.Messaging
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreRedisTalks.Messaging.Subscriber3", "Messaging\NetCoreRedisTalks.Messaging.Subscriber3\NetCoreRedisTalks.Messaging.Subscriber3.csproj", "{B0E3DDD2-56C2-4E23-A89C-F3406475BC3D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreRedisTalks.Search.Api", "RediSearch\NetCoreRedisTalks.Search.Api\NetCoreRedisTalks.Search.Api.csproj", "{AB490CEB-AFF0-4318-AFBB-1108F29553F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreRedisTalks.RealTime.Api", "RealTime\NetCoreRedisTalks.RealTime.Api\NetCoreRedisTalks.RealTime.Api.csproj", "{376A6B04-85AB-45A1-969A-F088A9689DF9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "client", "client", "{B59005DC-AD27-4C4A-825A-DD6D8E99E385}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +53,14 @@ Global
 		{B0E3DDD2-56C2-4E23-A89C-F3406475BC3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0E3DDD2-56C2-4E23-A89C-F3406475BC3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0E3DDD2-56C2-4E23-A89C-F3406475BC3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB490CEB-AFF0-4318-AFBB-1108F29553F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB490CEB-AFF0-4318-AFBB-1108F29553F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB490CEB-AFF0-4318-AFBB-1108F29553F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB490CEB-AFF0-4318-AFBB-1108F29553F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{376A6B04-85AB-45A1-969A-F088A9689DF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{376A6B04-85AB-45A1-969A-F088A9689DF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{376A6B04-85AB-45A1-969A-F088A9689DF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{376A6B04-85AB-45A1-969A-F088A9689DF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +71,9 @@ Global
 		{8CB4BF3B-2CB0-4EF9-93E2-07EA17DC0931} = {CBDC7C03-E96C-46D7-ADED-C6FB14486459}
 		{13BA7B35-91E3-482B-AE4B-61CC70E32618} = {CBDC7C03-E96C-46D7-ADED-C6FB14486459}
 		{B0E3DDD2-56C2-4E23-A89C-F3406475BC3D} = {CBDC7C03-E96C-46D7-ADED-C6FB14486459}
+		{AB490CEB-AFF0-4318-AFBB-1108F29553F6} = {FA35E827-2ADC-45F1-9A3F-05CF1FB4296C}
+		{376A6B04-85AB-45A1-969A-F088A9689DF9} = {0C271B63-D456-4E79-BA2C-DD3FDEDAD03E}
+		{B59005DC-AD27-4C4A-825A-DD6D8E99E385} = {0C271B63-D456-4E79-BA2C-DD3FDEDAD03E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {97AB754E-38A6-4630-8B4D-DE8FB67C75DF}
