@@ -9,7 +9,8 @@ var connection = new signalR.HubConnectionBuilder()
 $(document).ready(() => {
 
     connection.start().then(() => { 
-       $("#message").removeClass('text-info').addClass('text-sucess').text("Hub'a bağlantı sağlandı. Redisden kontrol ediniz.");
+       $("#message").removeClass('text-info').addClass('text-success');
+       $("#message").html("Hub'a bağlantı sağlandı.<br/> Redisden kontrol ediniz.");
        setInterval(blinkMessage, 1000);
     })
     .catch((error) => {

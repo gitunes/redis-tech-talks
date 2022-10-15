@@ -26,6 +26,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreRedisTalks.RealTime.Api", "RealTime\NetCoreRedisTalks.RealTime.Api\NetCoreRedisTalks.RealTime.Api.csproj", "{376A6B04-85AB-45A1-969A-F088A9689DF9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "client", "client", "{B59005DC-AD27-4C4A-825A-DD6D8E99E385}"
+	ProjectSection(SolutionItems) = preProject
+		RealTime\client\index.html = RealTime\client\index.html
+		RealTime\client\realtime.js = RealTime\client\realtime.js
+		RealTime\client\signalr.js = RealTime\client\signalr.js
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

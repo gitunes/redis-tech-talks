@@ -1,2 +1,9 @@
 ﻿global using Microsoft.AspNetCore.Mvc;
+global using NetCoreRedisTalks.Search.Api.Models;
+global using NetCoreRedisTalks.Search.Api.Services;
+global using NetCoreRedisTalks.Search.Api.Utilities;
+global using Newtonsoft.Json;
+global using Newtonsoft.Json.Linq;
+global using NRediSearch;
 global using StackExchange.Redis;
+global using System.Reflection;
