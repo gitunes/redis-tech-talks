@@ -1,8 +1,6 @@
 ﻿namespace NetCoreRedisTalks.Caching.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class DistributedCacheController : ControllerBase
+    public class DistributedCacheController : BaseApiController
     {
         private readonly IDistributedCache _distributedCache;
 
@@ -16,22 +14,22 @@
         {
             string cachedValue = _distributedCache.GetString("vehicles-distributed-cache");
             if (string.IsNullOrEmpty(cachedValue))
-                return NotFound("vehicle not found");
+                return NotFound();
 
             var vehicles = JsonSerializer.Deserialize<List<Vehicle>>(cachedValue);
             return Ok(vehicles);
         }
 
         [HttpPost]
-        public IActionResult SetString([FromBody] List<Vehicle> vehicles)
+        public IActionResult SetString()
         {
             DistributedCacheEntryOptions distributedCacheEntryOptions = new()
             {
                 AbsoluteExpiration = DateTime.Now.AddMinutes(10),
-                SlidingExpiration = TimeSpan.FromSeconds(5)
+                SlidingExpiration = TimeSpan.FromMinutes(1)
             };
 
-            var serilazedValue = JsonSerializer.Serialize(vehicles);
+            var serilazedValue = JsonSerializer.Serialize(FakeDbContext.Vehicles);
 
             _distributedCache.SetString("vehicles-distributed-cache", serilazedValue, distributedCacheEntryOptions);
 
@@ -41,15 +39,15 @@
         [HttpPost]
         public IActionResult SetFile()
         {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/volkswagen.jpg");
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/volkswagen.png");
             byte[] imageByte = System.IO.File.ReadAllBytes(path);
 
-            _distributedCache.Set("volkswagen-distributed-cache", imageByte);
+            _distributedCache.Set("volkswagen-logo-file-distributed-cache", imageByte);
 
             return Ok();
         }
 
-        [HttpPost]
+        [HttpDelete]
         public IActionResult Remove()
         {
             _distributedCache.Remove("vehicles-distributed-cache");

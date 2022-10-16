@@ -2,6 +2,9 @@
 {
     public static class FakeDbContext
     {
+        /// <summary>
+        /// 6 adet araç markası
+        /// </summary>
         public static List<Vehicle> Vehicles
         {
             get
@@ -11,17 +14,38 @@
                     new Vehicle
                     {
                         BrandId = 1,
-                        BrandName = "Seat"
+                        BrandName = "Seat",
+                        Score = 10
                     },
                     new Vehicle
                     {
                         BrandId = 2,
-                        BrandName = "Volkswagen"
+                        BrandName = "Volkswagen",
+                        Score = 5
                     },
                     new Vehicle
                     {
                         BrandId = 3,
-                        BrandName = "Audi"
+                        BrandName = "Audi",
+                        Score = 7
+                    },
+                    new Vehicle
+                    {
+                        BrandId = 4,
+                        BrandName = "Volkswagen Ticari",
+                        Score = 2
+                    },
+                    new Vehicle
+                    {
+                        BrandId = 5,
+                        BrandName = "Porsche",
+                        Score = 1
+                    },
+                    new Vehicle
+                    {
+                        BrandId = 6,
+                        BrandName = "Skoda",
+                        Score = 9
                     }
                 };
             }

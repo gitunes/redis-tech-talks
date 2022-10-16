@@ -12,9 +12,8 @@
     "NetCoreRedisTalks.RealTime.Api": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7502",
+      "applicationUrl": "https://localhost:7500",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

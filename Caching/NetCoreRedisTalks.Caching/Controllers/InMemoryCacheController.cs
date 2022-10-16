@@ -1,71 +1,108 @@
 ﻿namespace NetCoreRedisTalks.Caching.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class InMemoryCacheController : ControllerBase
+    public class InMemoryCacheController : BaseApiController
     {
         private readonly IMemoryCache _memoryCache;
+        private readonly ILogger<InMemoryCacheController> _logger;
 
-        public InMemoryCacheController(IMemoryCache memoryCache)
+        public InMemoryCacheController(
+            IMemoryCache memoryCache, 
+            ILogger<InMemoryCacheController> logger)
         {
             _memoryCache = memoryCache;
+            _logger = logger;
         }
 
+        /// <summary>
+        /// Anahtar değere göre bellekten veri listeler
+        /// </summary>
         [HttpGet]
-        public IActionResult Get(string key)
+        public IActionResult Get()
         {
-            var cachedVehicles = _memoryCache.Get<List<Vehicle>>(key);
-
-            if (cachedVehicles is null)
-                return NotFound("vehicle not found");
+            var cachedVehicles = _memoryCache.Get<List<Vehicle>>("vehicles-memory-cache");
 
             return Ok(cachedVehicles);
         }
 
+        /// <summary>
+        /// Anahtar değer ile birlikte belleğe veri kaydeder
+        /// </summary>
         [HttpPost]
-        public IActionResult Set([FromBody] List<Vehicle> vehicles)
+        public IActionResult Set()
         {
-            var cachedVehicles = _memoryCache.Set("vehicles-memory-cache", vehicles, new MemoryCacheEntryOptions
+            var cachedVehicles = _memoryCache.Set("vehicles-memory-cache", FakeDbContext.Vehicles, new MemoryCacheEntryOptions
             {
                 AbsoluteExpiration = DateTime.Now.AddMinutes(10),
-                SlidingExpiration = TimeSpan.FromSeconds(2),
+                SlidingExpiration = TimeSpan.FromMinutes(2),
                 Priority = CacheItemPriority.Low
             });
 
             return Ok(cachedVehicles);
         }
 
+        /// <summary>
+        /// Anahtar değere ait bellekten veri siler
+        /// </summary>
         [HttpDelete]
-        public IActionResult Remove(string key)
+        public IActionResult Remove()
         {
-            _memoryCache.Remove(key);
+            _memoryCache.Remove("vehicles-memory-cache");
 
             return Ok();
         }
 
+        /// <summary>
+        /// Anahtar değere ait bellekte veri varsa out keyword'ü ile listeler, ve metot dönüş tipinde (boolean) işlem sonucunu döndürür
+        /// </summary>
         [HttpGet]
-        public IActionResult TryGetValue(string key)
+        public IActionResult TryGetValue()
         {
-            bool isExists = _memoryCache.TryGetValue(key, out List<Vehicle> cachedVehicles);
-
+            bool isExists = _memoryCache.TryGetValue("vehicles-memory-cache", out List<Vehicle> cachedVehicles);
             if (!isExists)
-                return NotFound("vehicle not found");
+                return NotFound();
 
             return Ok(cachedVehicles);
         }
 
+        /// <summary>
+        /// Anahtar değere ait bellekte veri varsa listeler, yoksa belleğe veriyi kaydedip sonra listeler
+        /// </summary>
         [HttpGet]
-        public IActionResult GetOrCreate(string key)
+        public IActionResult GetOrCreate()
         {
-            List<Vehicle> cachedVehicles = _memoryCache.GetOrCreate<List<Vehicle>>(key, factory =>
+            List<Vehicle> cachedVehicles = _memoryCache.GetOrCreate("vehicles-memory-cache", cacheEntry =>
             {
-                factory.AbsoluteExpiration = DateTime.Now.AddHours(1);
-                factory.SlidingExpiration = TimeSpan.FromMinutes(3);
+                cacheEntry.AbsoluteExpiration = DateTime.Now.AddHours(1);
+                cacheEntry.SlidingExpiration = TimeSpan.FromMinutes(3);
 
                 return FakeDbContext.Vehicles;
             });
 
             return Ok(cachedVehicles);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [HttpGet]
+        public IActionResult RegisterPostEvictionCallback()
+        {
+            DateTime date = _memoryCache.GetOrCreate<DateTime>("date", cacheEntry =>
+            {
+                cacheEntry.AbsoluteExpiration = DateTime.Now.AddSeconds(10);
+                cacheEntry.RegisterPostEvictionCallback((key, value, reason, state) =>
+                {
+                    _logger.LogInformation($"--- Key : {key}\nValue : {value}\nReason : {reason}\nState : {state}");
+                });
+
+                DateTime value = DateTime.Now;
+                _logger.LogInformation($"--- Set Cache : {value}");
+                return value;
+            });
+
+            _logger.LogInformation($"--- Get Cache : {date}");
+
+            return Ok();
         }
     }
 }

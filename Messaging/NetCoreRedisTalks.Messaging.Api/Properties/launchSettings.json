@@ -12,9 +12,8 @@
     "NetCoreRedisTalks.Messaging.Api": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7501",
+      "applicationUrl": "https://localhost:7500",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

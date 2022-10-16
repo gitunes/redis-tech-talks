@@ -1,8 +1,9 @@
 ﻿namespace NetCoreRedisTalks.Caching.Controllers.ExchangeApiControllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class StringTypesController : ControllerBase
+    /// <summary>
+    /// String işlemleri
+    /// </summary>
+    public class StringTypesController : BaseApiController
     {
         private readonly IDatabase _database;
 
@@ -14,10 +15,12 @@
         [HttpGet]
         public IActionResult SimpleStringOperations()
         {
+            _database.StringSet("vehicle-name", "Volkswagen Ticari");
+
             _database.StringIncrement("visitor", 5); //ziyaretçi değerini 5 5 arttır.
             _database.StringDecrement("visitor", 2); //ziyaretçi değerini 2 2 azalt.
 
-            _database.StringGetRange("vehicle-name", 0, 3); //araç ismini 0'dan başlayarak 3 karakter getir. (substring)
+            RedisValue redisValue = _database.StringGetRange("vehicle-name", 0, 3); //araç ismini 0'dan başlayarak 3 karakter getir. (substring)
             long cachedVehicleNameLength = _database.StringLength("vehicle-name"); //verinin uzunluğunu döner.
 
             var cachedVehicleName = _database.StringGet("vehicle-name");
@@ -27,11 +30,11 @@
             return Ok();
         }
 
-        [HttpGet]
-        public IActionResult SetComplexData([FromBody] List<Vehicle> vehicles)
+        [HttpPost]
+        public IActionResult SetComplexData()
         {
             _database.StringSet("vehicle-name", "volkswagen");
-            _database.StringSet("vehicles-distributed-cache", JsonSerializer.Serialize(vehicles));
+            _database.StringSet("vehicles-distributed-cache", JsonSerializer.Serialize(FakeDbContext.Vehicles));
 
             return Ok();
         }

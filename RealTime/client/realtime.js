@@ -1,4 +1,4 @@
-const hubAddress = "https://localhost:7502/dogustechnologyhub";
+const hubAddress = "https://localhost:7500/dogustechnologyhub";
 
 var connection = new signalR.HubConnectionBuilder()
 .configureLogging(signalR.LogLevel.Debug)

@@ -1,6 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 #region InMemoryCache Konfigürasyonu
 builder.Services.AddMemoryCache();
@@ -28,4 +30,9 @@ builder.Services.TryAddSingleton<IConnectionMultiplexer>(provider => ConnectionM
 #endregion
 
 var app = builder.Build();
+
+app.UseSwagger();
+app.UseSwaggerUI();
+app.MapControllers();
+
 app.Run();
