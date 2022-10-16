@@ -29,10 +29,13 @@ builder.Services.TryAddSingleton<IConnectionMultiplexer>(provider => ConnectionM
 }));
 #endregion
 
+builder.Services.AddSession(options => options.IdleTimeout = TimeSpan.FromMinutes(20));
+
 var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
+app.UseSession();
 app.MapControllers();
 
 app.Run();

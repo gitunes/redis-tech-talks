@@ -5,7 +5,6 @@ var connection = new signalR.HubConnectionBuilder()
 .withAutomaticReconnect(1000, 1000, 3000, 3000)
 .withUrl(hubAddress).build();
 
-
 $(document).ready(() => {
 
     connection.start().then(() => { 
