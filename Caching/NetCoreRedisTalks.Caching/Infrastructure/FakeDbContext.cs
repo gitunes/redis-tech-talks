@@ -50,5 +50,35 @@
                 };
             }
         }
+
+        public static List<City> Cities
+        {
+            get
+            {
+                return new List<City>
+                {
+                    new City
+                    {
+                        Id = 34,
+                        Name = "İstanbul"
+                    },
+                    new City
+                    {
+                        Id = 06,
+                        Name = "Ankara"
+                    },
+                    new City
+                    {
+                        Id = 35,
+                        Name = "İzmir"
+                    },
+                    new City
+                    {
+                        Id = 24,
+                        Name = "Erzincan"
+                    },
+                };
+            }
+        }
     }
 }

@@ -38,4 +38,6 @@ app.UseSwaggerUI();
 app.UseSession();
 app.MapControllers();
 
+app.SetStaticDataToRedisDatabase();
+
 app.Run();
