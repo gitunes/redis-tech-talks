@@ -1,6 +1,6 @@
 ﻿namespace NetCoreRedisTalks.Search.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class SearchsController : ControllerBase
     {
@@ -15,8 +15,7 @@
         /// Redis ile arama
         /// </summary>
         [HttpGet]
-        [Route("Search")]
-        public async Task<IActionResult> Search(string word)
+        public async Task<IActionResult> Search([FromQuery] string word)
         {
             var airports = await _airportService.SearchAsync(word);
             if (airports is null)

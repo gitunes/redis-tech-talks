@@ -1,8 +1,8 @@
-using NetCoreRedisTalks.Search.Api.Services;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IConnectionMultiplexer>(provider => ConnectionMultiplexer.Connect(new ConfigurationOptions
 {
@@ -10,12 +10,27 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(provider => ConnectionMult
     AllowAdmin = true
 }));
 
+builder.Services.AddCors(corsOptions =>
+{
+    corsOptions.AddPolicy("RediSearch", builder =>
+    {
+        builder.WithOrigins(
+            "http://localhost:5500",
+            "http://127.0.0.1:5500")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
+
 builder.Services.AddSingleton<IAirportService, AirportService>();
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
-app.UseAuthorization();
+app.UseSwagger();
+app.UseSwaggerUI();
+app.UseStaticFiles();
+app.UseCors("RediSearch");
 app.MapControllers();
 
 app.Run();

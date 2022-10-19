@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>jQuery UI Autocomplete - Default functionality</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script>
+
+        $(function () {
+            $("#airport").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        type: 'GET',
+                        dataType: 'json',
+                        url: "https://localhost:7500/api/Searchs/Search",
+                        data: 'word=' + request.term,
+                        success: function (data) {
+                            debugger;
+                            response($.map(data, function (item) {
+                                var object = new Object();
+                                return object
+                            }));
+                        }
+                    });
+                },
+                minLength: 1,
+                delay: 250
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="ui-widget">
+        <p>Favourite Airport:</p>
+        <label for="airport">Airport: </label>
+        <input id="airport">
+    </div>
+</body>
+
+</html>

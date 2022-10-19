@@ -13,23 +13,28 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RediSearch", "RediSearch", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreRedisTalks.Caching", "Caching\NetCoreRedisTalks.Caching\NetCoreRedisTalks.Caching.csproj", "{4DFD751C-0E37-4F8D-BEC0-9C7268827FD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreRedisTalks.Messaging.Api", "Messaging\NetCoreRedisTalks.Messaging.Api\NetCoreRedisTalks.Messaging.Api.csproj", "{21E2B92A-183B-4171-B90B-4E34B72C5163}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreRedisTalks.Messaging.Api", "Messaging\NetCoreRedisTalks.Messaging.Api\NetCoreRedisTalks.Messaging.Api.csproj", "{21E2B92A-183B-4171-B90B-4E34B72C5163}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreRedisTalks.Messaging.Subscriber1", "Messaging\NetCoreRedisTalks.Messaging.Subscriber1\NetCoreRedisTalks.Messaging.Subscriber1.csproj", "{8CB4BF3B-2CB0-4EF9-93E2-07EA17DC0931}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreRedisTalks.Messaging.Subscriber1", "Messaging\NetCoreRedisTalks.Messaging.Subscriber1\NetCoreRedisTalks.Messaging.Subscriber1.csproj", "{8CB4BF3B-2CB0-4EF9-93E2-07EA17DC0931}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreRedisTalks.Messaging.Subscriber2", "Messaging\NetCoreRedisTalks.Messaging.Subscriber2\NetCoreRedisTalks.Messaging.Subscriber2.csproj", "{13BA7B35-91E3-482B-AE4B-61CC70E32618}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreRedisTalks.Messaging.Subscriber2", "Messaging\NetCoreRedisTalks.Messaging.Subscriber2\NetCoreRedisTalks.Messaging.Subscriber2.csproj", "{13BA7B35-91E3-482B-AE4B-61CC70E32618}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreRedisTalks.Messaging.Subscriber3", "Messaging\NetCoreRedisTalks.Messaging.Subscriber3\NetCoreRedisTalks.Messaging.Subscriber3.csproj", "{B0E3DDD2-56C2-4E23-A89C-F3406475BC3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreRedisTalks.Messaging.Subscriber3", "Messaging\NetCoreRedisTalks.Messaging.Subscriber3\NetCoreRedisTalks.Messaging.Subscriber3.csproj", "{B0E3DDD2-56C2-4E23-A89C-F3406475BC3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreRedisTalks.Search.Api", "RediSearch\NetCoreRedisTalks.Search.Api\NetCoreRedisTalks.Search.Api.csproj", "{AB490CEB-AFF0-4318-AFBB-1108F29553F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreRedisTalks.Search.Api", "RediSearch\NetCoreRedisTalks.Search.Api\NetCoreRedisTalks.Search.Api.csproj", "{AB490CEB-AFF0-4318-AFBB-1108F29553F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreRedisTalks.RealTime.Api", "RealTime\NetCoreRedisTalks.RealTime.Api\NetCoreRedisTalks.RealTime.Api.csproj", "{376A6B04-85AB-45A1-969A-F088A9689DF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreRedisTalks.RealTime.Api", "RealTime\NetCoreRedisTalks.RealTime.Api\NetCoreRedisTalks.RealTime.Api.csproj", "{376A6B04-85AB-45A1-969A-F088A9689DF9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "client", "client", "{B59005DC-AD27-4C4A-825A-DD6D8E99E385}"
 	ProjectSection(SolutionItems) = preProject
 		RealTime\client\index.html = RealTime\client\index.html
 		RealTime\client\realtime.js = RealTime\client\realtime.js
 		RealTime\client\signalr.js = RealTime\client\signalr.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "client", "client", "{649B643C-D86C-4265-BE55-B3C805D4463E}"
+	ProjectSection(SolutionItems) = preProject
+		index.html = index.html
 	EndProjectSection
 EndProject
 Global
@@ -79,6 +84,7 @@ Global
 		{AB490CEB-AFF0-4318-AFBB-1108F29553F6} = {FA35E827-2ADC-45F1-9A3F-05CF1FB4296C}
 		{376A6B04-85AB-45A1-969A-F088A9689DF9} = {0C271B63-D456-4E79-BA2C-DD3FDEDAD03E}
 		{B59005DC-AD27-4C4A-825A-DD6D8E99E385} = {0C271B63-D456-4E79-BA2C-DD3FDEDAD03E}
+		{649B643C-D86C-4265-BE55-B3C805D4463E} = {FA35E827-2ADC-45F1-9A3F-05CF1FB4296C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {97AB754E-38A6-4630-8B4D-DE8FB67C75DF}

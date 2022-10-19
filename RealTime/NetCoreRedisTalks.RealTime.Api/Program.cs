@@ -2,12 +2,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddSingleton<IConnectionMultiplexer>(provider => ConnectionMultiplexer.Connect(new ConfigurationOptions
-{
-    EndPoints = { "localhost:6379" },
-    AllowAdmin = true
-}));
-
 builder.Services.AddCors(corsOptions =>
 {
     corsOptions.AddPolicy(nameof(DogusTechnologyHub), builder =>
@@ -28,24 +22,26 @@ builder.Services.AddSignalR(options =>
 {
     ConfigurationOptions configurationOptions = new()
     {
-        ChannelPrefix = "SignalR-Hub-Prefix",
-        AbortOnConnectFail = false,
-        AsyncTimeout = 10000,
-        ConnectTimeout = 15000,
-        User = "default",
-        Password = "4vNQ4FbYkngRA",
-        DefaultDatabase = 0,
-        AllowAdmin = true
+        //Birden çok SignalR uygulamasý için bir Redis sunucusu kullanýyorsanýz, her SignalR uygulamasý için farklý bir kanal öneki kullanýn.
+        ChannelPrefix = "SignalR-Hub-Prefix"
     };
 
     options.Configuration = configurationOptions;
 
     options.ConnectionFactory = async writer =>
     {
-        configurationOptions.EndPoints.Add("localhost:6379");
-        configurationOptions.SetDefaultPorts();
+        var connection = await ConnectionMultiplexer.ConnectAsync(configurationOptions, writer);
+        connection.ConnectionFailed += (_, e) =>
+        {
+            Console.WriteLine("Redis baðlantýsý baþarýsýz.");
+        };
 
-        return await ConnectionMultiplexer.ConnectAsync(configurationOptions, writer);
+        if (!connection.IsConnected)
+        {
+            Console.WriteLine("Redis'e baðlanmadý.");
+        }
+
+        return connection;
     };
 });
 

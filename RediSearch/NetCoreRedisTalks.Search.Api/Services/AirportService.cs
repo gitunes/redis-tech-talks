@@ -14,9 +14,12 @@
 
         public async Task<IEnumerable<Airport>> SearchAsync(string word)
         {
-            Query q = new Query($"(@code:{word})|(@city:{word}*)|(@Tag:{{{word}}})")
-               .SetLanguage("Turkish");
+            word = word.Trim().ToLower();
 
+            Query q = new Query($"(@city:{word}*)")
+               .SetLanguage("portuguese");
+            //Query q = new Query($"(@Name:{ command.Sentence }*)|(@Address:{ command.Sentence }*)")
+            // Query q = new Query($"(@code:{word}*)|(@city:*{word}*)|(@Tag:{{{word}}})")
             SearchResult searchResult = await _client.SearchAsync(q);
             if (searchResult.TotalResults == 0)
                 return default;
@@ -92,20 +95,22 @@
 
         public async Task PushSampleDataAsync()
         {
-            using StreamReader streamReader = new("airports.json");
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "airports.json");
+
+            using StreamReader streamReader = new(path);
             string airportsJsonData = await streamReader.ReadToEndAsync();
-            List<Airport> airports = JsonConvert.DeserializeObject<List<Airport>>(airportsJsonData);
+            List<Airport> airports = JsonConvert.DeserializeObject<List<Airport>>(airportsJsonData); //3885
 
             foreach (var airport in airports)
             {
                 var fields = new Dictionary<string, RedisValue>
                 {
-                    { "Code", airport.Code },
-                    { "Name", airport.Name },
-                    { "City", airport.City },
-                    { "State", airport.State },
-                    { "Country", airport.Country },
-                    { "Tag", airport.Tag },
+                    { "Code", airport.Code?.ToLower() ?? string.Empty },
+                    { "Name", airport.Name?.ToLower() ?? string.Empty},
+                    { "City", airport.City?.ToLower() ?? string.Empty},
+                    { "State", airport.State?.ToLower() ?? string.Empty},
+                    { "Country", airport.Country?.ToLower() ?? string.Empty},
+                    { "Tag", airport.Tag?.ToLower() ?? string.Empty},
                     { "Lat", airport.Lat },
                     { "Lon", airport.Lon },
                     { "GeoPoint", $"{ airport.Lon },{ airport.Lat }" }
