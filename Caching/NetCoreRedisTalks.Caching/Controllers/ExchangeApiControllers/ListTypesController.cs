@@ -2,12 +2,11 @@
 {
     /// <summary>
     /// Gelişmiş liste tipi
+    /// Değerleri koleksiyonel olarak karşılayan türdür. Koleksiyonun başına veya sonuna ekleme yapılabilir
     /// </summary>
     public class ListTypesController : BaseApiController
     {
-
         private const string ListTypesKey = "list-types-key";
-
         private readonly IDatabase _database;
 
         public ListTypesController(IConnectionMultiplexer connectionMultiplexer)
@@ -30,8 +29,8 @@
         [HttpPost]
         public IActionResult ListLeftOrRightPush()
         {
-            _database.ListRightPush(ListTypesKey, "technology"); //Listenin sonuna hello ekleyecek
-            _database.ListLeftPush(ListTypesKey, "dogus"); //Listenin başına hello ekleyecek
+            _database.ListRightPush(ListTypesKey, "technology"); //Listenin sonuna technology ekleyecek
+            _database.ListLeftPush(ListTypesKey, "dogus"); //Listenin başına dogus ekleyecek
             
             return Ok();
         }
@@ -42,7 +41,7 @@
             _database.ListRemove(ListTypesKey, "dogus");
 
             _database.ListLeftPop(ListTypesKey); //Listeye ait ilk öğeyi silecek
-            _database.ListRightPop(ListTypesKey);
+            _database.ListRightPop(ListTypesKey); //Listeye ait son öğeyi silecek
 
             return NoContent();
         }

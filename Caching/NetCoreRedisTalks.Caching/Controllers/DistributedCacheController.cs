@@ -39,10 +39,10 @@
         [HttpPost]
         public IActionResult SetFile()
         {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/volkswagen.png");
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/dogustechnology.jpeg");
             byte[] imageByte = System.IO.File.ReadAllBytes(path);
 
-            _distributedCache.Set("volkswagen-logo-file-distributed-cache", imageByte);
+            _distributedCache.Set("dogustechnology-logo-file-distributed-cache", imageByte);
 
             return Ok();
         }

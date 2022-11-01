@@ -18,12 +18,13 @@ builder.Services.AddCors(corsOptions =>
 builder.Services.AddSignalR(options =>
 {
     options.EnableDetailedErrors = true;
+
 }).AddStackExchangeRedis("localhost:6379", options =>
 {
     ConfigurationOptions configurationOptions = new()
     {
-        //Birden çok SignalR uygulamasý için bir Redis sunucusu kullanýyorsanýz, her SignalR uygulamasý için farklý bir kanal öneki kullanýn.
-        ChannelPrefix = "SignalR-Hub-Prefix"
+        ChannelPrefix = "DogusTechnologyChannelPrefix",
+        EndPoints = { "localhost:6379" }
     };
 
     options.Configuration = configurationOptions;
@@ -33,12 +34,12 @@ builder.Services.AddSignalR(options =>
         var connection = await ConnectionMultiplexer.ConnectAsync(configurationOptions, writer);
         connection.ConnectionFailed += (_, e) =>
         {
-            Console.WriteLine("Redis baðlantýsý baþarýsýz.");
+            Console.WriteLine("Connection to Redis failed.");
         };
 
         if (!connection.IsConnected)
         {
-            Console.WriteLine("Redis'e baðlanmadý.");
+            Console.WriteLine("Did not connect to Redis.");
         }
 
         return connection;

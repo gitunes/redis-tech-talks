@@ -2,6 +2,7 @@
 {
     /// <summary>
     /// Sıralı liste (Score)
+    /// Veri tekrarını engeller ve skor değerine göre sıralama yapar.
     /// </summary>
     public class SortedSetTypesController : BaseApiController
     {
@@ -20,7 +21,7 @@
             if (!isExists)
                 return NotFound();
 
-            var sortedSetEntries = _database.SortedSetScan(SortedSetKey);
+            var sortedSetEntries = _database.SortedSetScan(SortedSetKey); //Listeye ait tüm elemanları listeleme
 
             var sortedSetEntriesRanks = _database.SortedSetRangeByRank(SortedSetKey, 0, 5, Order.Descending); //Skora göre azalan şekilde sırala
 

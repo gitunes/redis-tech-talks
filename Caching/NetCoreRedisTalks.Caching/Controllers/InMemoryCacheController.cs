@@ -20,7 +20,6 @@
         public IActionResult Get()
         {
             var cachedVehicles = _memoryCache.Get<List<Vehicle>>("vehicles-memory-cache");
-
             return Ok(cachedVehicles);
         }
 
@@ -81,9 +80,6 @@
             return Ok(cachedVehicles);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         [HttpGet]
         public IActionResult RegisterPostEvictionCallback()
         {

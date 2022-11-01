@@ -2,6 +2,7 @@
 {
     /// <summary>
     /// Key-value listesi
+    /// Bir key’e karşılık birden fazla field ve value tutabileceğimiz object benzeri yapılardır.
     /// </summary>
     public class HashTypesController : BaseApiController
     {

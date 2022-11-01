@@ -2,6 +2,7 @@
 {
     /// <summary>
     /// Key değerine ait birden fazla veri ekleme
+    /// List veri türünün benzersiz (unique) versiyonudur. Veri tekrarını engeller.
     /// </summary>
     public class SetTypesController : BaseApiController
     {
