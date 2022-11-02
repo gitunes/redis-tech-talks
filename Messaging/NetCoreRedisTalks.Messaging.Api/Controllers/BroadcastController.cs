@@ -20,7 +20,7 @@
         [Route("UploadNewVideo")]
         public async Task<IActionResult> UploadNewVideo()
         {
-            long response = await _subscriber.PublishAsync("dogus-technology-youtube-channel", ".Net Core ile Redis Kullanımı adında yeni video eklendi.");
+            long response = await _subscriber.PublishAsync("dogus-technology-youtube-channel", "Redis: Etkili Cache Yönetiminin En Popüler Yolu adında yeni video eklendi.");
             return Ok();
         }
 

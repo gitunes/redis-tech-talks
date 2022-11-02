@@ -3,48 +3,48 @@
     public static class FakeDbContext
     {
         /// <summary>
-        /// 6 adet araç markası
+        /// 6 adet meyve
         /// </summary>
-        public static List<Vehicle> Vehicles
+        public static List<Fruit> Fruits
         {
             get
             {
-                return new List<Vehicle>
+                return new List<Fruit>
                 {
-                    new Vehicle
+                    new Fruit
                     {
-                        BrandId = 1,
-                        BrandName = "Seat",
+                        FruitId = 1,
+                        FruitName = "Elma",
                         Score = 10
                     },
-                    new Vehicle
+                    new Fruit
                     {
-                        BrandId = 2,
-                        BrandName = "Volkswagen",
+                        FruitId = 2,
+                        FruitName = "Portakal",
                         Score = 5
                     },
-                    new Vehicle
+                    new Fruit
                     {
-                        BrandId = 3,
-                        BrandName = "Audi",
+                        FruitId = 3,
+                        FruitName = "Muz",
                         Score = 7
                     },
-                    new Vehicle
+                    new Fruit
                     {
-                        BrandId = 4,
-                        BrandName = "Volkswagen Ticari",
+                        FruitId = 4,
+                        FruitName = "Nar",
                         Score = 2
                     },
-                    new Vehicle
+                    new Fruit
                     {
-                        BrandId = 5,
-                        BrandName = "Porsche",
+                        FruitId = 5,
+                        FruitName = "Greyfurt",
                         Score = 1
                     },
-                    new Vehicle
+                    new Fruit
                     {
-                        BrandId = 6,
-                        BrandName = "Skoda",
+                        FruitId = 6,
+                        FruitName = "Kivi",
                         Score = 9
                     }
                 };

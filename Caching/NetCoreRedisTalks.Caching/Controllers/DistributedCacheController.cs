@@ -12,12 +12,12 @@
         [HttpGet]
         public IActionResult GetString()
         {
-            string cachedValue = _distributedCache.GetString("vehicles-distributed-cache");
+            string cachedValue = _distributedCache.GetString("fruits-distributed-cache");
             if (string.IsNullOrEmpty(cachedValue))
                 return NotFound();
 
-            var vehicles = JsonSerializer.Deserialize<List<Vehicle>>(cachedValue);
-            return Ok(vehicles);
+            var fruits = JsonSerializer.Deserialize<List<Fruit>>(cachedValue);
+            return Ok(fruits);
         }
 
         [HttpPost]
@@ -26,12 +26,12 @@
             DistributedCacheEntryOptions distributedCacheEntryOptions = new()
             {
                 AbsoluteExpiration = DateTime.Now.AddMinutes(10),
-                SlidingExpiration = TimeSpan.FromMinutes(1)
+                SlidingExpiration = TimeSpan.FromMinutes(3)
             };
 
-            var serilazedValue = JsonSerializer.Serialize(FakeDbContext.Vehicles);
+            var fruits = JsonSerializer.Serialize(FakeDbContext.Fruits);
 
-            _distributedCache.SetString("vehicles-distributed-cache", serilazedValue, distributedCacheEntryOptions);
+            _distributedCache.SetString("fruits-distributed-cache", fruits, distributedCacheEntryOptions);
 
             return Ok();
         }
@@ -50,7 +50,7 @@
         [HttpDelete]
         public IActionResult Remove()
         {
-            _distributedCache.Remove("vehicles-distributed-cache");
+            _distributedCache.Remove("fruits-distributed-cache");
             return Ok();
         }
     }

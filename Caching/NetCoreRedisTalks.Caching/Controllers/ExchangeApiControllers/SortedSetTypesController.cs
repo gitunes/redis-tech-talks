@@ -31,9 +31,9 @@
         [HttpPost]
         public IActionResult Add()
         {
-            foreach (var vehicle in FakeDbContext.Vehicles)
+            foreach (var fruit in FakeDbContext.Fruits)
             {
-                _database.SortedSetAdd(SortedSetKey, vehicle.BrandName, vehicle.Score);
+                _database.SortedSetAdd(SortedSetKey, fruit.FruitName, fruit.Score);
             }
 
             _database.KeyExpire(SortedSetKey, DateTime.Now.AddHours(2)); //Cache süresini belirleme
@@ -44,8 +44,8 @@
         [HttpDelete]
         public IActionResult Delete()
         {
-            _database.SortedSetRemove(SortedSetKey, "test");
-
+            _database.SortedSetRemove(SortedSetKey, "sorted-set-key");
+            
             return Ok();
         }
     }

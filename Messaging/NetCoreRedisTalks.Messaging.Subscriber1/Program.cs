@@ -1,13 +1,6 @@
 ﻿IConnectionMultiplexer connectionMultiplexer = ConnectionMultiplexer.Connect(new ConfigurationOptions
 {
-    EndPoints = { "localhost:6379" },
-    AbortOnConnectFail = false,
-    AsyncTimeout = 10000,
-    ConnectTimeout = 15000,
-    User = "default",
-    Password = "4vNQ4FbYkngRA",
-    DefaultDatabase = 0,
-    AllowAdmin = true
+    EndPoints = { "localhost:6379" }
 });
 
 ISubscriber subscriber = connectionMultiplexer.GetSubscriber();
@@ -23,5 +16,7 @@ await subscriber.SubscribeAsync("ltunes-fm-radio-channel", (RedisChannel redisCh
     Console.ForegroundColor = ConsoleColor.DarkYellow;
     Console.WriteLine("ltunes-fm-radio-channel: {0}", message);
 });
+
+Console.Title = "SUB 1 - Doğuş Teknoloji & LTunes Fm Radio Kanallarına Aboneyim.";
 
 Console.ReadKey();

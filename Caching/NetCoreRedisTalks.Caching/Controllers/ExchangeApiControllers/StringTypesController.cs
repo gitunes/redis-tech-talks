@@ -34,7 +34,7 @@
         public IActionResult SetComplexData()
         {
             _database.StringSet("company-name", "Doğuş Teknoloji");
-            _database.StringSet("vehicles-distributed-cache", JsonSerializer.Serialize(FakeDbContext.Vehicles));
+            _database.StringSet("vehicles-distributed-cache", JsonSerializer.Serialize(FakeDbContext.Fruits));
 
             return Ok();
         }

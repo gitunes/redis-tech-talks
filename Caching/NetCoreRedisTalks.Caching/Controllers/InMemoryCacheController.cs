@@ -19,7 +19,7 @@
         [HttpGet]
         public IActionResult Get()
         {
-            var cachedVehicles = _memoryCache.Get<List<Vehicle>>("vehicles-memory-cache");
+            var cachedVehicles = _memoryCache.Get<List<Fruit>>("fruits-memory-cache");
             return Ok(cachedVehicles);
         }
 
@@ -29,7 +29,7 @@
         [HttpPost]
         public IActionResult Set()
         {
-            var cachedVehicles = _memoryCache.Set("vehicles-memory-cache", FakeDbContext.Vehicles, new MemoryCacheEntryOptions
+            var cachedVehicles = _memoryCache.Set("fruits-memory-cache", FakeDbContext.Fruits, new MemoryCacheEntryOptions
             {
                 AbsoluteExpiration = DateTime.Now.AddMinutes(10),
                 SlidingExpiration = TimeSpan.FromMinutes(2),
@@ -45,7 +45,7 @@
         [HttpDelete]
         public IActionResult Remove()
         {
-            _memoryCache.Remove("vehicles-memory-cache");
+            _memoryCache.Remove("fruits-memory-cache");
 
             return Ok();
         }
@@ -56,7 +56,7 @@
         [HttpGet]
         public IActionResult TryGetValue()
         {
-            bool isExists = _memoryCache.TryGetValue("vehicles-memory-cache", out List<Vehicle> cachedVehicles);
+            bool isExists = _memoryCache.TryGetValue("fruits-memory-cache", out List<Fruit> cachedVehicles);
             if (!isExists)
                 return NotFound();
 
@@ -69,12 +69,12 @@
         [HttpGet]
         public IActionResult GetOrCreate()
         {
-            List<Vehicle> cachedVehicles = _memoryCache.GetOrCreate("vehicles-memory-cache", cacheEntry =>
+            List<Fruit> cachedVehicles = _memoryCache.GetOrCreate("fruits-memory-cache", cacheEntry =>
             {
                 cacheEntry.AbsoluteExpiration = DateTime.Now.AddHours(1);
                 cacheEntry.SlidingExpiration = TimeSpan.FromMinutes(3);
 
-                return FakeDbContext.Vehicles;
+                return FakeDbContext.Fruits;
             });
 
             return Ok(cachedVehicles);
