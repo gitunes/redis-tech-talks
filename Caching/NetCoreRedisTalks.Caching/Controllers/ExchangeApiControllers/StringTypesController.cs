@@ -20,7 +20,7 @@
             _database.StringIncrement("visitor", 5); //ziyaretçi değerini 5 5 arttır.
             _database.StringDecrement("visitor", 2); //ziyaretçi değerini 2 2 azalt.
 
-            RedisValue redisValue = _database.StringGetRange("company-name", 0, 3); //araç ismini 0'dan başlayarak 3 karakter getir. (substring)
+            RedisValue redisValue = _database.StringGetRange("company-name", 0, 3); //şirket ismini 0'dan başlayarak 3 karakter getir. (substring)
             long cachedVehicleNameLength = _database.StringLength("company-name"); //verinin uzunluğunu döner.
 
             var cachedVehicleName = _database.StringGet("company-name");
@@ -34,7 +34,7 @@
         public IActionResult SetComplexData()
         {
             _database.StringSet("company-name", "Doğuş Teknoloji");
-            _database.StringSet("vehicles-distributed-cache", JsonSerializer.Serialize(FakeDbContext.Fruits));
+            _database.StringSet("fruits-distributed-cache", JsonSerializer.Serialize(FakeDbContext.Fruits));
 
             return Ok();
         }
